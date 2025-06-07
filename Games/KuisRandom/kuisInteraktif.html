@@ -199,14 +199,15 @@
         fetch('pertanyaan.json')
             .then(response => response.json())
             .then(json => {
-            pertanyaan = json.pertanyaan;
-            acakArray(pertanyaan);
-            pertanyaan = pertanyaan.slice(0, 10); // Ambil 10 pertanyaan acak
+                pertanyaan = json.pertanyaan;
+                acakArray(pertanyaan);
+                pertanyaan = pertanyaan.slice(0, 10); // Ambil 10 pertanyaan acak
             })
             .catch(error => console.error('Error fetching JSON:', error));
 
         let score = 0;
         let soalSaatIni = 0;
+        let timer = null; // Tambahkan deklarasi timer global
 
         startButton.addEventListener("click", () => {
             startButton.style.display = "none";
@@ -216,8 +217,12 @@
         });
 
         function tampilkanSoal() {
-            const soal = pertanyaan[soalSaatIni];
-            soalContainer.textContent = soal.soal;
+            // Bersihkan timer sebelumnya jika ada
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+            soalContainer.textContent = pertanyaan[soalSaatIni].soal;
 
             // Update soal info dan skor info
             soalInfo.textContent = `Soal ${soalSaatIni + 1} dari ${pertanyaan.length}`;
@@ -225,6 +230,7 @@
 
             jawabanContainer.innerHTML = "";
             // Acak urutan jawaban sebelum ditampilkan
+            const soal = pertanyaan[soalSaatIni];
             const jawabanAcak = [...soal.jawaban];
             acakArray(jawabanAcak);
             jawabanAcak.forEach((jawaban) => {
@@ -232,6 +238,7 @@
                 tombol.textContent = jawaban;
                 tombol.addEventListener('click', () => {
                     clearInterval(timer);
+                    timer = null;
                     cekJawaban(jawaban);
                 });
                 jawabanContainer.appendChild(tombol);
@@ -256,13 +263,14 @@
             const totalWaktu = waktu;
             countdownText.textContent = `Sisa waktu: ${waktu} detik`;
 
-            const timer = setInterval(() => {
+            timer = setInterval(() => {
                 waktu--;
                 const persentase = (waktu / totalWaktu) * 100;
                 progressBar.style.width = `${persentase}%`;
                 countdownText.textContent = `Sisa waktu: ${waktu} detik`;
                 if (waktu <= 0) {
                     clearInterval(timer);
+                    timer = null;
                     countdownText.textContent = "Waktu habis!";
                     setTimeout(() => {
                         cekJawaban(null);
