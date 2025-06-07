@@ -13,6 +13,14 @@
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body, h1, h2, h3, h4, h5, h6, a, .navbar, .nav-link, .btn, input, textarea, label, .card, .modal-content {
+            font-family: 'Inter', Arial, Helvetica, sans-serif !important;
+            letter-spacing: 0.01em;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({
@@ -23,7 +31,7 @@
     </script>
     <style>
         :root{
-        --gradient : linear-gradient(to right, #dff5fd, #b2b9ff);
+        --gradient : linear-gradient(to left, #ecf2f4, #f1f2fc);
         }
 
         body{
@@ -45,27 +53,6 @@
                 <span class="line" style="display: block; width: 100%; height: 0.5px; background-color: black; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center center;"></span>
                 <span class="line" style="display: block; width: 100%; height: 1px; background-color: black; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center center;"></span>
             </span>
-            <script>
-                function toggleMenu(element) {
-                    const lines = element.querySelectorAll('.line');
-                    const navbarNav = document.getElementById('navbarNav');
-                    if (element.classList.contains('active')) {
-                        // Reset to original state
-                        lines[0].style.transform = 'none';
-                        lines[1].style.opacity = '1';
-                        lines[2].style.transform = 'none';
-                        element.classList.remove('active');
-                        navbarNav.classList.remove('show'); // Close the navbar
-                    } else {
-                        // Transform to cross with aligned vertical position
-                        lines[0].style.transform = 'rotate(45deg) translateY(11.7px)';
-                        lines[1].style.opacity = '0';
-                        lines[2].style.transform = 'rotate(-45deg) translateY(-11.7px)';
-                        element.classList.add('active');
-                        navbarNav.classList.add('show'); // Open the navbar
-                    }
-                }
-            </script>
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
@@ -115,6 +102,25 @@
                 }
             </style>
             <script>
+            function toggleMenu(element) {
+                    const lines = element.querySelectorAll('.line');
+                    const navbarNav = document.getElementById('navbarNav');
+                    if (element.classList.contains('active')) {
+                        // Reset to original state
+                        lines[0].style.transform = 'none';
+                        lines[1].style.opacity = '1';
+                        lines[2].style.transform = 'none';
+                        element.classList.remove('active');
+                        navbarNav.classList.remove('show'); // Close the navbar
+                    } else {
+                        // Transform to cross with aligned vertical position
+                        lines[0].style.transform = 'rotate(45deg) translateY(11.7px)';
+                        lines[1].style.opacity = '0';
+                        lines[2].style.transform = 'rotate(-45deg) translateY(-11.7px)';
+                        element.classList.add('active');
+                        navbarNav.classList.add('show'); // Open the navbar
+                    }
+                }
                 document.addEventListener('DOMContentLoaded', function () {
                     const navLinks = document.querySelectorAll('.nav-link');
                     navLinks.forEach(link => {
@@ -122,6 +128,47 @@
                             navLinks.forEach(nav => nav.classList.remove('active'));
                             this.classList.add('active');
                         });
+                    });
+                });
+                window.addEventListener('scroll', function () {
+                    const sections = document.querySelectorAll('section[id]');
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    let scrollPos = window.scrollY + 100; // Offset for navbar height
+
+                    sections.forEach(section => {
+                        if (
+                            scrollPos >= section.offsetTop &&
+                            scrollPos < section.offsetTop + section.offsetHeight
+                        ) {
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === `#${section.id}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                });
+                const navLinks = document.querySelectorAll('.nav-link');
+                const navbarNav = document.getElementById('navbarNav');
+                const burger = document.querySelector('.d-lg-none[onclick]');
+
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function () {
+                        // Close navbar on mobile after clicking a link, with 0.5s delay
+                        if (window.innerWidth < 992 && navbarNav.classList.contains('show')) {
+                            setTimeout(() => {
+                                navbarNav.classList.remove('show');
+                                if (burger && burger.classList.contains('active')) {
+                                    // Reset burger icon
+                                    const lines = burger.querySelectorAll('.line');
+                                    lines[0].style.transform = 'none';
+                                    lines[1].style.opacity = '1';
+                                    lines[2].style.transform = 'none';
+                                    burger.classList.remove('active');
+                                }
+                            }, 500);
+                        }
                     });
                 });
             </script>
@@ -172,15 +219,15 @@
         <!-- About Text -->
         <div class="col-md-6 mb-4">
             <h2 class="mb-4" data-aos="fade-right">About Me</h2>
-            <p data-aos="fade-right" data-aos-delay="75">Hello! My name is <strong>Moch. Wildan Fahmi</strong>, a student from <strong>Nganjuk, East Java, Indonesia</strong>. I am 17 years old and have been exploring creative design and development for about 2 years.</p>
-            <p data-aos="fade-right" data-aos-delay="150">I use tools like <strong>Blender</strong>, <strong>Unity</strong>, <strong>Photoshop</strong>, <strong>Corel Draw</strong>, and <strong>VS Code</strong> to create digital artworks, 3D models, and interactive projects.</p>
-            <p data-aos="fade-right" data-aos-delay="225">I’m always excited to take on new challenges and collaborate on interesting projects. Let’s connect and create something great!</p>
+            <p data-aos="fade-right" data-aos-delay="25">Hello! My name is <strong>Moch. Wildan Fahmi</strong>, a student from <strong>Nganjuk, East Java, Indonesia</strong>. I am 17 years old and have been exploring creative design and Game development for about 2 years.</p>
+            <p data-aos="fade-right" data-aos-delay="75">I use tools like <strong>Blender</strong>, <strong>Unity</strong>, <strong>Photoshop</strong>, <strong>Corel Draw</strong>, and <strong>VS Code</strong> to create digital artworks, 3D models, and interactive projects.</p>
+            <p data-aos="fade-right" data-aos-delay="125">I’m always excited to take on new challenges and collaborate on interesting projects. Let’s connect and create something great!</p>
 
             <!-- Education -->
             <h3 class="mb-3" data-aos="fade-left">Education</h3>
             <ul class="list-unstyled">
                 <li class="mb-2" data-aos="fade-left" data-aos-delay="75"><strong>SMK Negeri 1 Nganjuk</strong> (2023 - Now)</li>
-                <li class="mb-2" data-aos="fade-left" data-aos-delay="150"><strong>MTS Negeri 7 Nganjuk</strong> (2019 - 2023)</li>
+                <li class="mb-2" data-aos="fade-left" data-aos-delay="125"><strong>MTS Negeri 7 Nganjuk</strong> (2019 - 2023)</li>
             </ul>
         </div>
 
@@ -189,31 +236,31 @@
             <!-- Skills -->
             <h3 class="mt-4 mb-3" data-aos="fade-right">Skills</h3>
             <!-- Skill item -->
-            <div class="mb-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="50">
                 <small>Front End Web Development</small>
                 <div class="progress" style="height: 8px;">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: 0%;" data-target-width="80%"></div>
                 </div>
             </div>
-            <div class="mb-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="60">
                 <small>Game Development</small>
                 <div class="progress" style="height: 8px;">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: 0%;" data-target-width="85%"></div>
                 </div>
             </div>
-            <div class="mb-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="70">
                 <small>Visual C#</small>
                 <div class="progress" style="height: 8px;">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: 0%;" data-target-width="80%"></div>
                 </div>
             </div>
-            <div class="mb-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="80">
                 <small>3D Modeling and Animating</small>
                 <div class="progress" style="height: 8px;">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: 0%;" data-target-width="75%"></div>
                 </div>
             </div>
-            <div class="mb-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="90">
                 <small>Graphic Design</small>
                 <div class="progress" style="height: 8px;">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: 0%;" data-target-width="60%"></div>
@@ -262,7 +309,7 @@
             </style>
             <h4 class="text-center" data-aos="fade-up" data-aos-duration="800">3D Models</h4>
             <div class="row justify-content-center g-4">
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="750">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="25" data-aos-duration="750">
                     <div class="card border-0" style="background-color: transparent;">
                         <a data-title="Lone Chair" data-bs-toggle="modal" data-bs-target="#lone-chair" style="text-decoration: none; color: #000;">
                             <img src="/3D model/Icon/Lone Chair.png" class="card-img-top img-fluid rounded-2" alt="Lone Chair">
@@ -273,7 +320,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="750">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="50" data-aos-duration="750">
                     <div class="card border-0" style="background-color: transparent;">
                         <a data-title="Magnifying Glass" data-bs-toggle="modal" data-bs-target="#magnifying-glass" style="text-decoration: none; color: #000;">
                             <img src="/3D model/Icon/Magnifying Glass.png" class="card-img-top img-fluid rounded-2" alt="Magnifying Glass">
@@ -284,7 +331,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="750">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="75" data-aos-duration="750">
                     <div class="card border-0" style="background-color: transparent;">
                         <a data-title="Water Faucet" data-bs-toggle="modal" data-bs-target="#water-faucet" style="text-decoration: none; color: #000;">
                             <img src="/3D model/Icon/Water Faucet.png" class="card-img-top img-fluid rounded-2" alt="Water Faucet">
@@ -295,32 +342,32 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="750">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="750">
                     <div class="card border-0" style="background-color: transparent;">
                         <a data-title="Handrill" data-bs-toggle="modal" data-bs-target="#handrill" style="text-decoration: none; color: #000;">
                             <img src="/3D model/Icon/Handrill.png" class="card-img-top img-fluid rounded-2" alt="Handrill">
                             <div class="card-body text-center p-2">
                                 <h6 class="card-title mb-1">Handrill</h6>
-                                <p class="card-text text-muted">Tighten the bolt</p>
+                                <p class="card-text text-muted">A simple manual drilling tool</p>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="750">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="125" data-aos-duration="750">
                     <div class="card border-0" style="background-color: transparent;">
-                        <a href="https://picsum.photos/200/150?random=5" data-lightbox="portfolio" data-title="Project 5">
-                            <img src="https://picsum.photos/200/150?random=5" class="card-img-top img-fluid rounded-2" alt="Project 5">
+                        <a data-title="Television" data-bs-toggle="modal" data-bs-target="#television" style="text-decoration: none; color: #000;">
+                            <img src="/3D model/Icon/Television.png" class="card-img-top img-fluid rounded-2" alt="Television">
+                            <div class="card-body text-center p-2">
+                                <h6 class="card-title mb-1">Television</h6>
+                                <p class="card-text text-muted">Your Grandmother's old Television</p>
+                            </div>
                         </a>
-                        <div class="card-body text-center p-2">
-                            <h5 class="card-title mb-1">Project 5</h5>
-                            <p class="card-text text-muted">Description of the fifth project</p>
-                        </div>
                     </div>
                 </div>
             </div>
             <h4 class="text-center" data-aos="fade-up" data-aos-duration="800">Games</h4>
             <div class="row justify-content-center g-4">
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="750">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="50" data-aos-duration="750">
                     <div class="card border-0" style="background-color: transparent;">
                         <a href="https://gd.games/wildan_fahmi/forest" target="_blank" style="text-decoration: none; color: #000;">
                             <img src="/Games/Forest.png" class="card-img-top img-fluid rounded-2" alt="Game 1">
@@ -331,7 +378,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="750">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="750">
                     <div class="card border-0" style="background-color: transparent;">
                         <a href="https://gd.games/wildan_fahmi/gate-keeper" target="_blank" style="text-decoration: none; color: #000;">
                             <img src="/Games/Gate Keeper.png" class="card-img-top img-fluid rounded-2" alt="Game 2">
@@ -342,7 +389,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in"data-aos-delay="300" data-aos-duration="750">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4" data-aos="zoom-in"data-aos-delay="150" data-aos-duration="750">
                     <div class="card border-0" style="background-color: transparent;">
                         <a href="https://gd.games/wildan_fahmi/save-the-alien" target="_blank" style="text-decoration: none; color: #000;">
                             <img src="/Games/Save the Aliens.png" class="card-img-top img-fluid rounded-2" alt="Game 3">
@@ -430,6 +477,24 @@
               </div>
             </div>
           </div>
+          <div class="modal fade" id="television" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body p-0">
+                  <!-- 3D Viewer -->
+                  <model-viewer src="/3D model/Model/Television.glb" 
+                                alt="Television" 
+                                auto-rotate 
+                                camera-controls 
+                                environment-image="neutral"
+                                exposure="1"
+                                shadow-intensity="1"
+                                style="width: 100%; height: 80vh; background-color: #8c8d8f;">
+                  </model-viewer>
+                </div>
+              </div>
+            </div>
+          </div>
     </section>
 
     <section id="contact" class="py-5">
@@ -441,15 +506,15 @@
                     <div class="mt-4">
                         <h5 class="mb-3"></h5>
                         <div style="padding: 20px">
-                            <div class="mb-4" data-aos="fade-right" data-aos-delay="200">
+                            <div class="mb-4" data-aos="fade-right" data-aos-delay="100">
                                 <i class="fas fa-envelope me-3" style="font-size: 1.5rem;"></i>
                                 <a href="mailto:wildanfahmi087@gmail.com" style="text-decoration: none; color: black; font-size: 1.2rem;">wildanfahmi087@gmail.com</a>
                             </div>
-                            <div class="mb-4" data-aos="fade-right" data-aos-delay="300">
+                            <div class="mb-4" data-aos="fade-right" data-aos-delay="125">
                                 <i class="fab fa-whatsapp me-3" style="font-size: 1.5rem;"></i>
                                 <a href="https://wa.me/6282132343428" target="_blank" style="text-decoration: none; color: black; font-size: 1.2rem;">+62 821-3234-3428</a>
                             </div>
-                            <div class="mb-4" data-aos="fade-right" data-aos-delay="400">
+                            <div class="mb-4" data-aos="fade-right" data-aos-delay="150">
                                 <i class="fas fa-map-marker-alt me-3" style="font-size: 1.5rem;"></i>
                                 <span style="font-size: 1.2rem;">Nganjuk, East Java, Indonesia</span>
                             </div>
@@ -459,19 +524,19 @@
                 <div class="col-md-6">
                     <h4 data-aos="fade-left" data-aos-delay="100">Send a Message</h4>
                     <form action="https://formspree.io/f/xyzwdzaw" method="POST">
-                        <div class="mb-3" data-aos="fade-left" data-aos-delay="200">
+                        <div class="mb-3" data-aos="fade-left" data-aos-delay="50">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
-                        <div class="mb-3" data-aos="fade-left" data-aos-delay="300">
+                        <div class="mb-3" data-aos="fade-left" data-aos-delay="100">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
-                        <div class="mb-3" data-aos="fade-left" data-aos-delay="400">
+                        <div class="mb-3" data-aos="fade-left" data-aos-delay="150">
                             <label for="message" class="form-label">Message</label>
                             <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="border-radius: 25px; width: 75px;" data-aos="fade-left" data-aos-delay="500">Send</button>
+                        <button type="submit" class="btn btn-primary" style="border-radius: 25px; width: 75px;" data-aos="fade-left" data-aos-delay="200">Send</button>
                     </form>
                 </div>
             </div>
