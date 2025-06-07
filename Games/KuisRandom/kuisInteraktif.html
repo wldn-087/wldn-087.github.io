@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Interaktif</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #kuis-container {
+            background-color: white;
+            display: none;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #soal {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #333;
+            text-align: center;
+        }
+
+        #jawaban {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #jawaban button {
+            background-color: #eee;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #jawaban button:hover {
+            background-color: #ddd;
+        }
+
+        #submit {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        #submit:hover {
+            background-color: #45a049;
+        }
+
+        #hasil {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #start-button, #restart-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #start-button:hover, #restart-button:hover {
+            background-color: #0056b3;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 100%;
+            background-color: #4caf50;
+            transition: width 1s linear;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kuis Random</h1>
+    <button id="start-button">Mulai Kuis</button>
+    <div id="kuis-container">
+        <div id="info">
+            <span id="soal-info"></span>
+            <span id="skor-info"></span>
+        </div>
+        <div id="soal"></div>
+        <div id="jawaban"></div>
+        <div id="hasil"></div>
+        <button id="restart-button">Mulai ulang</button>
+    </div>
+
+    <script>
+        const startButton = document.getElementById("start-button");
+        const kuisContainer = document.getElementById("kuis-container");
+        const soalContainer = document.getElementById("soal");
+        const jawabanContainer = document.getElementById("jawaban");
+        const hasilContainer = document.getElementById("hasil");
+        const restartButton = document.getElementById("restart-button");
+        const soalInfo = document.getElementById("soal-info");
+        const skorInfo = document.getElementById("skor-info");
+
+        let pertanyaan = [];
+
+        // Fungsi untuk mengacak array (Fisher-Yates Shuffle)
+        function acakArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        fetch('pertanyaan.json')
+            .then(response => response.json())
+            .then(json => {
+            pertanyaan = json.pertanyaan;
+            acakArray(pertanyaan);
+            pertanyaan = pertanyaan.slice(0, 10); // Ambil 10 pertanyaan acak
+            console.log(pertanyaan);
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+
+        let score = 0;
+        let soalSaatIni = 0;
+
+        startButton.addEventListener("click", () => {
+            startButton.style.display = "none";
+            kuisContainer.style.display = "block";
+            restartButton.style.display = "none";
+            tampilkanSoal();
+        });
+
+        function tampilkanSoal() {
+            const soal = pertanyaan[soalSaatIni];
+            soalContainer.textContent = soal.soal;
+
+            // Update soal info dan skor info
+            soalInfo.textContent = `Soal ${soalSaatIni + 1} dari ${pertanyaan.length}`;
+            skorInfo.textContent = `Skor: ${score}`;
+
+            jawabanContainer.innerHTML = "";
+            // Acak urutan jawaban sebelum ditampilkan
+            const jawabanAcak = [...soal.jawaban];
+            acakArray(jawabanAcak);
+            jawabanAcak.forEach((jawaban) => {
+                const tombol = document.createElement("button");
+                tombol.textContent = jawaban;
+                tombol.addEventListener('click', () => {
+                    clearInterval(timer);
+                    cekJawaban(jawaban);
+                });
+                jawabanContainer.appendChild(tombol);
+            });
+
+            const progressBarContainer = document.createElement("div");
+            progressBarContainer.classList.add("progress-bar-container");
+            soalContainer.appendChild(progressBarContainer);
+
+            const progressBar = document.createElement("div");
+            progressBar.classList.add("progress-bar");
+            progressBarContainer.appendChild(progressBar);
+
+            // Tambahkan elemen teks untuk hitung mundur
+            const countdownText = document.createElement("span");
+            countdownText.style.display = "block";
+            countdownText.style.textAlign = "center";
+            countdownText.style.marginTop = "5px";
+            soalContainer.appendChild(countdownText);
+
+            let waktu = soal.waktu;
+            const totalWaktu = waktu;
+            countdownText.textContent = `Sisa waktu: ${waktu} detik`;
+
+            const timer = setInterval(() => {
+                waktu--;
+                const persentase = (waktu / totalWaktu) * 100;
+                progressBar.style.width = `${persentase}%`;
+                countdownText.textContent = `Sisa waktu: ${waktu} detik`;
+                if (waktu <= 0) {
+                    clearInterval(timer);
+                    countdownText.textContent = "Waktu habis!";
+                    setTimeout(() => {
+                        cekJawaban(null);
+                    }, 1500);
+                }
+            }, 1000);
+        }
+
+        function cekJawaban(jawaban) {
+            const soal = pertanyaan[soalSaatIni];
+            if (jawaban === soal.jawabanBenar) {
+                score++;
+            }
+            soalSaatIni++;
+            if (soalSaatIni < pertanyaan.length) {
+                tampilkanSoal();
+            } else {
+                tampilkanHasil();
+            }
+        }
+
+        function tampilkanHasil() {
+            hasilContainer.textContent = 'Skor Anda: ' + score + ' dari ' + pertanyaan.length;
+
+            soalContainer.style.display = "none";
+            jawabanContainer.style.display = "none";
+            soalInfo.style.display = "none";
+            skorInfo.style.display = "none";
+
+            restartButton.style.display = "block";
+            hasilContainer.appendChild(document.createElement("br"));
+            hasilContainer.appendChild(restartButton);
+
+            restartButton.addEventListener("click", () => {
+            score = 0;
+            soalSaatIni = 0;
+
+            soalContainer.style.display = "block";
+            jawabanContainer.style.display = "flex";
+            hasilContainer.textContent = "";
+
+            soalInfo.style.display = "inline";
+            skorInfo.style.display = "inline";
+
+            restartButton.style.display = "none";
+
+            tampilkanSoal();
+            });
+        }
+    </script>
+</body>
+</html>

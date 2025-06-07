@@ -1,0 +1,185 @@
+{
+    "pertanyaan" : [
+        {
+            "soal": "Siapa nama karakter utama pada serial Naruto?",
+            "jawaban" : ["Naruto", "Luffy", "Goku", "Saitama"],
+            "jawabanBenar" : "Naruto",
+            "waktu": 10
+        },
+        {
+            "soal": "Berapa nilai x berdasarkan persamaan 5x + 3 = 18?",
+            "jawaban" : ["2", "3", "4", "5"],
+            "jawabanBenar" : "3",
+            "waktu": 20
+        },
+        {
+            "soal": "Siapa presiden pertama Indonesia?",
+            "jawaban" : ["Soekarno", "Soeharto", "Jokowi", "Habibie"],
+            "jawabanBenar" : "Soekarno",
+            "waktu": 10
+        },
+        {
+            "soal": "Bahasa pemrogramman yang diguankan untuk membuat game di unity adalah ...",
+            "jawaban" : ["Java", "C++", "Python", "JavaScript", "C#"],
+            "jawabanBenar" : "C#",
+            "waktu": 15
+        },
+        {
+            "soal": "Apa organ tubuh manusia yang berfungsi untuk memompa darah?",
+            "jawaban" : ["Mata", "Tenggorokan", "Usus", "Jantung", "Otak"],
+            "jawabanBenar" : "Jantung",
+            "waktu": 25
+        },
+        {
+            "soal": "Apa nama ibukota Indonesia?",
+            "jawaban" : ["Jakarta", "Bandung", "Surabaya", "Medan"],
+            "jawabanBenar" : "Jakarta",
+            "waktu": 10
+        },
+        {
+            "soal": "Siapa penulis novel 'Harry Potter'?",
+            "jawaban" : ["J.K. Rowling", "J.R.R. Tolkien", "George R.R. Martin", "Agatha Christie"],
+            "jawabanBenar" : "J.K. Rowling",
+            "waktu": 15
+        },
+        {
+            "soal": "Apa nama planet terdekat dengan matahari?",
+            "jawaban" : ["Venus", "Mars", "Merkurius", "Bumi"],
+            "jawabanBenar" : "Merkurius",
+            "waktu": 20
+        },
+        {
+            "soal": "Apa nama gunung tertinggi di dunia?",
+            "jawaban" : ["Kilimanjaro", "Everest", "Fuji", "Denali"],
+            "jawabanBenar" : "Everest",
+            "waktu": 30
+        },
+        {
+            "soal": "Apa judul anime yang menceritakan tentang seorang anak bernama Gon yang mencari ayahnya?",
+            "jawaban": ["Naruto", "One Piece", "Hunter x Hunter", "Bleach"],
+            "jawabanBenar": "Hunter x Hunter",
+            "waktu": 20
+        },
+        {
+            "soal": "Siapa sutradara film 'Inception'?",
+            "jawaban": ["Steven Spielberg", "Christopher Nolan", "James Cameron", "Quentin Tarantino"],
+            "jawabanBenar": "Christopher Nolan",
+            "waktu": 30
+        },
+        {
+            "soal": "Alat musik petik yang memiliki 6 senar disebut ...",
+            "jawaban": ["Gitar", "Biola", "Piano", "Saxophone"],
+            "jawabanBenar": "Gitar",
+            "waktu": 15
+        },
+        {
+            "soal": "Siapa penyanyi lagu 'Shape of You'?",
+            "jawaban": ["Ed Sheeran", "Justin Bieber", "Adele", "Bruno Mars"],
+            "jawabanBenar": "Ed Sheeran",
+            "waktu": 15
+        },
+        {
+            "soal": "Negara manakah yang memiliki kota Paris sebagai ibukotanya?",
+            "jawaban": ["Italia", "Spanyol", "Prancis", "Jerman"],
+            "jawabanBenar": "Prancis",
+            "waktu": 10
+        },
+        {
+            "soal": "Apa nama unsur kimia dengan simbol O?",
+            "jawaban": ["Oksigen", "Osmium", "Oganesson", "Oksida"],
+            "jawabanBenar": "Oksigen",
+            "waktu": 20
+        },
+        {
+            "soal": "Kapan Indonesia merdeka?",
+            "jawaban": ["17 Agustus 1945", "1 Juni 1945", "20 Mei 1908", "10 November 1945"],
+            "jawabanBenar": "17 Agustus 1945",
+            "waktu": 10
+        },
+        {
+            "soal": "Apa nama ibu kota Australia?",
+            "jawaban": ["Sydney", "Melbourne", "Canberra", "Perth"],
+            "jawabanBenar": "Canberra",
+            "waktu": 25
+        },
+        {
+            "soal": "Berapakah hasil dari 12 x 8?",
+            "jawaban": ["96", "84", "108", "88"],
+            "jawabanBenar": "96",
+            "waktu": 15
+        },
+        {
+            "soal": "Siapa aktor pemeran utama dalam film 'Iron Man'?",
+            "jawaban": ["Chris Evans", "Robert Downey Jr.", "Chris Hemsworth", "Mark Ruffalo"],
+            "jawabanBenar": "Robert Downey Jr.",
+            "waktu": 15
+        },
+        {
+            "soal": "Apa nama hewan tercepat di darat?",
+            "jawaban" : ["Cheetah", "Kuda", "Harimau", "Anjing"],
+            "jawabanBenar" : "Cheetah",
+            "waktu": 20
+        }
+        ,
+        {
+            "soal": "Apa nama alat untuk mengukur suhu tubuh?",
+            "jawaban": ["Termometer", "Barometer", "Higrometer", "Altimeter"],
+            "jawabanBenar": "Termometer",
+            "waktu": 15
+        },
+        {
+            "soal": "Siapa penemu bola lampu pijar?",
+            "jawaban": ["Thomas Edison", "Nikola Tesla", "Alexander Graham Bell", "Isaac Newton"],
+            "jawabanBenar": "Thomas Edison",
+            "waktu": 20
+        },
+        {
+            "soal": "Apa nama sungai terpanjang di dunia?",
+            "jawaban": ["Amazon", "Nil", "Yangtze", "Mississippi"],
+            "jawabanBenar": "Nil",
+            "waktu": 25
+        },
+        {
+            "soal": "Apa nama mata uang Jepang?",
+            "jawaban": ["Yen", "Won", "Dollar", "Euro"],
+            "jawabanBenar": "Yen",
+            "waktu": 10
+        },
+        {
+            "soal": "Siapa penulis novel 'Laskar Pelangi'?",
+            "jawaban": ["Andrea Hirata", "Tere Liye", "Dee Lestari", "Habiburrahman El Shirazy"],
+            "jawabanBenar": "Andrea Hirata",
+            "waktu": 20
+        },
+        {
+            "soal": "Apa benua terbesar di dunia?",
+            "jawaban": ["Asia", "Afrika", "Eropa", "Amerika", "Australia"],
+            "jawabanBenar": "Asia",
+            "waktu": 10
+        },
+        {
+            "soal": "Apa nama zat yang memberi warna hijau pada daun?",
+            "jawaban": ["Klorofil", "Hemoglobin", "Melanin", "Karoten"],
+            "jawabanBenar": "Klorofil",
+            "waktu": 20
+        },
+        {
+            "soal": "Siapa pencipta lagu kebangsaan Indonesia Raya?",
+            "jawaban": ["W.R. Supratman", "Ismail Marzuki", "Ibu Sud", "H. Mutahar"],
+            "jawabanBenar": "W.R. Supratman",
+            "waktu": 15
+        },
+        {
+            "soal": "Apa nama alat musik tradisional dari pulau Jawa?",
+            "jawaban": ["Angklung", "Sasando", "Tifa", "Kolintang"],
+            "jawabanBenar": "Angklung",
+            "waktu": 15
+        },
+        {
+            "soal": "Apa nama satelit alami yang dimiliki oleh Bumi?",
+            "jawaban": ["Bulan", "Mars", "Venus", "Matahari"],
+            "jawabanBenar": "Bulan",
+            "waktu": 15
+        }
+    ]
+}
