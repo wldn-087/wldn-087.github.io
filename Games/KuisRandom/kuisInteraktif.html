@@ -297,8 +297,29 @@
             hasilContainer.appendChild(restartButton);
 
             restartButton.addEventListener("click", () => {
-            score = 0;
-            soalSaatIni = 0;
+                fetch('pertanyaan.json')
+                    .then(response => response.json())
+                    .then(json => {
+                        pertanyaan = json.pertanyaan;
+                        acakArray(pertanyaan);
+                        pertanyaan = pertanyaan.slice(0, 10);
+                        score = 0;
+                        soalSaatIni = 0;
+
+                        soalContainer.style.display = "block";
+                        jawabanContainer.style.display = "flex";
+                        hasilContainer.textContent = "";
+
+                        soalInfo.style.display = "inline";
+                        skorInfo.style.display = "inline";
+
+                        restartButton.style.display = "none";
+
+                        tampilkanSoal();
+                    })
+                    .catch(error => {
+                        hasilContainer.textContent = "Gagal memuat pertanyaan baru.";
+                    });
 
             soalContainer.style.display = "block";
             jawabanContainer.style.display = "flex";
